@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Project</title>
+    <link href = 'index.css' rel = 'stylesheet'>
+</head>
+<body>
+    <!-- Header
+    1. Image Backgroud
+    2. Display for "Available Budget" + Current Month and Date
+    3. Total Amount 
+    4. Total Income
+    5 Total Expenses -->
+
+    <!-- Input Area 
+    1. Choice Whether +/-
+    2. Description of Item
+    3. Value
+    4. Enter Button -->
+
+    <!-- Body Grid : 2 sections
+    1. Income Section
+        a. insert description + amount
+    2. Expenses Section
+        a. insert description + amount 
+    3. Button to Delete upon hover-->
+
+    <!-- INSTRUCTIONS
+    1. INPUT description
+    2. INPUT value
+    3. INPUT typeOfMoney +/-
+    4. STORE into a container
+
+    IF + THEN income = value
+        total income =+ income 
+        totalAmount =+ totalIncome 
+    ELSE IF - THEN expenses = value
+        totalExpenses =+ expenses
+        totalAmount =- totalExpenses
+
+    IF hover to description at ledger
+        x button will appear
+            IF x is clicked 
+                delete whole row (paycheck )
+    -->
+    <!-- 
+        Container = "-/itemName/amount"
+            function: split everytime "/"[1,0] [1,1] [1,2]
+     -->
+
+     <div id="container">
+         <div id="header">
+             <div class="image">
+                <img src="pexels-maitree-rimthong-1602726.jpg" class = "header-image">
+             </div>
+
+             <div class="header-content">
+                <div class=display-date>"Available Budget in September 2020"</div>
+                <div class="total-amount"> + 15,000.00</div>
+   
+                <div class = income-container> 
+                    <p>Income</p>
+                    <p class = "income-amount"> + 15,000.00</p>
+                </div>
+   
+                <div class="expenses-container"> 
+                   <p>Expenses</p>
+                   <p class="expenses-amount"> - 0.00</p>
+               </div>
+             </div>
+             
+         </div>
+
+         <div id="inputContainer">
+             <div class="dropDown">
+                <select name="input-type" class="input-type" id="choice">
+                    <option >+</option>
+                    <option >-</option>
+             </div>
+             <div class="descriptionInput">
+                <input type="text" id="descriptionInput" placeholder="Add description">
+             </div>
+
+             <div class="valueInput">
+                <input type="number" id="valueInput" placeholder="value">
+             </div>
+             <div class="submitButton"> ✔ </div>
+         </div>
+
+         <div id="ledgeContainer">
+             <div id="income-column"> 
+                 <p>Income</p>
+             </div>
+
+             <div id="expensesColumn"> 
+                <p>Expenses</p>
+            </div>
+         </div>
+     </div>
+</body>
+</html>
