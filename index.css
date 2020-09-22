@@ -1,59 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap');
+
 *{
     margin: 0;
     padding: 0;
 }
+body{
+    font-family: 'Kumbh Sans', sans-serif;
+    font-size: 30px;
+}
 #container {
     display: flex;
     flex-direction: column;
-}
-#header {
-    height: 150px; 
-    width: 100%;
+    height: 1080px;
 }
 
-.header-image{
-    height:500px;
-    width:100%;
+/* Header design */
+#header{
+    width: 100%;
+    height:30%;
+    background-image: url("headerimg.png");
+    background-size: cover;
 }
 
 .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%,-50%);
     font-size: 15px;
-    color: rgb(211, 201, 201);
-    background: rgba(0, 0, 0, 0.363);
-    text-align: center;
-    max-width: 60%;
-    padding: 5px;
-    border: 2px solid white;
+    width: 300px;
+    max-height: 50%;
 }
 
-#inputContainer , #ledgeContainer {
+.total-amount {
+    padding: 10px;
+    font-size: 25px;;
+}
+.income-container, .expenses-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    top: 350px;
+    justify-content: space-between;
+    margin: 10px;
     padding: 20px;
+    width: 300px;
+    border-radius: 20px;
+    border: 2px solid black;
 }
-#inputContainer{
-    background-color: gray;
 
+/* Input Line */
+#input-container, #ledge-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 100%;
+    position: relative;
+    padding: 20px;
+    align-items: center;
+}
+#input-container{
+    background-color: rgba(128, 128, 128, 0.541);
 }
 
-#ledgeContainer {
-    top: 400px;
-    width: 50%;
-    background-color: brown;
-    left: 25%;
+.input-type {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
 }
-#income-column{
-    text-align: left;
-    right: 20px;
-    background-color: red;
+
+.submit-button{
+    font-size: 40px;
+    padding: 10px;
+}
+.submit-button:hover{
+    cursor: pointer;
+    color: red;
+}
+#description-input{
+    width: 400px;
+}
+
+/* Ledge Container */
+
+#income-column, #expenses-column{
+    height: 200px;
+    width:50%;
+    margin: 10px;
+}
+
+p{
+    padding: 10px;
+}
+
+li {
+    font-size: 15px;
+    display:flex;
+    flex-flow: row;
+    padding: 10px;
+    justify-content: space-between;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    text-align: center;
+}
+
+li .delete-button {
+    display: none;
+}
+li:hover .delete-button {
+    display:block;
+    cursor: pointer;
+    color: crimson;
+    font-size: 20px;
 }

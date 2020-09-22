@@ -52,13 +52,11 @@
 
      <div id="container">
          <div id="header">
-             <div class="image">
-                <img src="pexels-maitree-rimthong-1602726.jpg" class = "header-image">
-             </div>
-
+        <!-- Header  -->
              <div class="header-content">
-                <div class=display-date>"Available Budget in September 2020"</div>
-                <div class="total-amount"> + 15,000.00</div>
+                 <!-- Display Amount -->
+                <div class=display-date>Available Budget in September 2020</div>
+                <div class="total-amount"> + 15,000.00 </div>
    
                 <div class = income-container> 
                     <p>Income</p>
@@ -72,30 +70,44 @@
              </div>
              
          </div>
-
-         <div id="inputContainer">
-             <div class="dropDown">
+         <!-- Input Container -->
+         <div id="input-container">
+             <div class="drop-down">
                 <select name="input-type" class="input-type" id="choice">
                     <option >+</option>
                     <option >-</option>
              </div>
-             <div class="descriptionInput">
-                <input type="text" id="descriptionInput" placeholder="Add description">
+             <div class="description-input">
+                <input type="text" class="input-type" id="description-input" placeholder="Add description">
              </div>
 
-             <div class="valueInput">
-                <input type="number" id="valueInput" placeholder="value">
+             <div class="value-input">
+                <input type="number" class="input-type" id="valueInput" placeholder="value">
              </div>
-             <div class="submitButton"> ✔ </div>
+             <div class="submit-button"> + </div>
          </div>
 
-         <div id="ledgeContainer">
+         <div id="ledge-container">
              <div id="income-column"> 
                  <p>Income</p>
+                 <ul class = "income-list">
+                     <li>
+                         <p>PayCheck</p>
+                         <p>+ 15 0000</p>
+                         <div class = "delete-button">⌫</div>
+                     </li>
+                 </ul>
              </div>
 
-             <div id="expensesColumn"> 
+             <div id="expenses-column"> 
                 <p>Expenses</p>
+                <ul class = "expenses-list">
+                    <li>
+                        <p>Karachi Dar Bar</p>
+                        <p>- 10 0000</p>
+                        <div class = "delete-button">⌫</div>
+                    </li>
+                </ul>
             </div>
          </div>
      </div>
