@@ -46,69 +46,73 @@
 // removeFromList => remove item
 
 var budgetApp = function(type,description,value) {
-    this.value = type + value;
-    this.description = description;
+    this.value = parseFloat(value);
     var income = document.getElementById('income-amount');
     var expenses = document.getElementById('expenses-amount');
+    var total = document.getElementById('total-amount');
+    
 
-    // Get total income function
-    budgetApp.prototype.getTotalIncome = function(type,value) {
+    // -------------------------------------------------------------------------------------
+    //                              GET TOTAL INCOME FUNCTION        
+    // -------------------------------------------------------------------------------------
+
+    budgetApp.prototype.getTotalIncome = function() {
+        let newElement =  `<li> <p>${description}</p> <p>${value}</p> <div class = "delete-button">⌫</div> </li>`     //newElement Format
+        let status = ''
+
         if (type === "+") {
-          console.log("Income Detected");
-          income.innerHTML =  parseFloat(income.innerHTML) + parseFloat(value);
+          income.innerHTML =  parseFloat(income.innerHTML) + this.value;        //TAKE TOTAL EXPENSES
+          status = 'income';
 
-          let incomeContainer = document.getElementById('income-list');
-          incomeContainer.insertAdjacentHTML('beforeend', `'<li> <p>${this.description}</p> <p>${this.value}</p> <div class = "delete-button">⌫</div> </li>`);
-  
         } else if (type === "-") {
-          console.log("Expense Detected");
-          expenses.innerHTML = parseFloat(expenses.innerHTML) + parseFloat(value);
-
-          let expensesContainer = document.getElementById('expenses-list');
-          expensesContainer.insertAdjacentHTML('beforeend', `'<li> <p>${this.description}</p> <p>${this.value}</p> <div class = "delete-button">⌫</div> </li>`);
-
+          expenses.innerHTML = parseFloat(expenses.innerHTML) + this.value;     //TAKES IN TOTAL EXPENSES
+          status = 'expenses';
         }
-        document.getElementById('total-amount').innerHTML = income.innerHTML - expenses.innerHTML;
+
+        document.getElementById(`${status}-list`).insertAdjacentHTML('beforeend', newElement ); //ADD ELEMENT TO END
+        total.innerHTML = (income.innerHTML - expenses.innerHTML);                               // GET TOTAL MONEY
       }
+    // -------------------------------------------------------------------------------------
+    //                              REMOVE FROM LIST FUNCTION       
+    // -------------------------------------------------------------------------------------
+
     budgetApp.prototype.removeFromList = function() {
-        var currentItem = document.getElementById('delete')
-        var currentAmount = currentItem.children[1].innerHTML
-        var total = document.getElementById('total-amount')
-        if (currentItem.parentElement.id === "income-list"){
-            income.innerHTML = parseFloat(income.innerHTML) - parseFloat(currentAmount);
-            total.innerHTML = parseFloat(total.innerHTML) - parseFloat(income.innerHTML);
-        } else {
-            expenses.innerHTML = parseFloat(expenses.innerHTML) - parseFloat(currentAmount);
-            total.innerHTML = parseFloat(total.innerHTML) - parseFloat(expenses.innerHTML)
+        var currentItem = document.getElementById('delete');
+        var currentAmount = parseFloat(currentItem.children[1].innerHTML);
+        var parentID = currentItem.parentElement.id;
 
+        if (parentID  === "income-list"){                                       //ADJUST TOTAL INCOME
+            income.innerHTML = parseFloat(income.innerHTML) - currentAmount;
+        } else if (parentID === "expenses-list"){                               //ADJUST TOTAL EXPENSES
+            expenses.innerHTML = parseFloat(expenses.innerHTML) - currentAmount;
         }
-    }
 
+        total.innerHTML = (income.innerHTML - expenses.innerHTML);             //ADJUST TOTAL MONEY
+        currentItem.remove();                                                   //REMOVE ELEMENT
+    }
+    
 }
 
-let budgetInput = null 
+let budgetInput = null; 
 
 document.addEventListener('click', e => {
-    var type = document.getElementById('choice').value
-    var description = document.getElementById('description-input').value
-    var value = document.getElementById('value-input').value
+    
+    var type = document.getElementById('choice').value;                          // INPUT : TYPE, DESCRIPTION AND VALUE
+    var description = document.getElementById('description-input').value;
+    var value = document.getElementById('value-input').value;
 
-    const button = e.target.className;
+    const button = e.target.className;                                         // INPUT: BUTTON
 
     if (button === 'delete-button'){
-        console.log('delete')
-        e.target.parentElement.id = 'delete'
-        budgetInput.removeFromList()
-        document.getElementById('delete').remove()
-        
+        e.target.parentElement.id = 'delete';
+        budgetInput.removeFromList();
     } else if (button === 'submit-button'){
-        console.log('submitButton')
 
-        if (value === '' || description ===''){
-            alert("Please enter a value")
+        if (value === '' || description ===''){                         // CHECKS WHETHER IT'S EMPTY
+            alert("Please enter a value");
         } else {
-            budgetInput = new budgetApp(type,description,value)
-            budgetInput.getTotalIncome(type,value)        
+            budgetInput = new budgetApp(type,description,value);
+            budgetInput.getTotalIncome();        
         }
     }
 }
